@@ -1,5 +1,5 @@
 import os
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 import fasttext
 
@@ -7,10 +7,13 @@ from app.core.errors import NoExpertFoundError
 from app.domain.entities.classification_result import LanguagePrediction
 
 
-@dataclass(frozen=True)
+@dataclass(frozen=True, slots=True)
 class FastTextExpertRepositoryConfig:
-    model_path: str = "models/fasttext_experts"
-    expert_model_path: str = "{}/{}/langclf.bin"  # model_path, writing_system
+    model_path: str = "models"
+    expert_model_patterns: tuple[str, ...] = (
+        "{}/{}/langclf_quant.ftz",
+        "{}/{}/langclf.bin",
+    )  # (model_path, writing_system)
     labels_prefix: str = "__label__"
     max_predictions: int = 10
 
@@ -30,7 +33,13 @@ class FastTextExpertRepository:
                 .lower())
 
     def classify(self, text: str, writing_system: str) -> list[LanguagePrediction]:
-        expert_model_file = self.cfg.expert_model_path.format(self.cfg.model_path, writing_system)
+        for pattern in self.cfg.expert_model_patterns:
+            expert_model_file = pattern.format(self.cfg.model_path, writing_system)
+            if os.path.exists(expert_model_file):
+                break
+        else:
+            raise NoExpertFoundError(f"No expert model found for writing system: {writing_system}")
+
         if not os.path.exists(expert_model_file):
             raise NoExpertFoundError(f"No expert model found for writing system: {writing_system}")
 

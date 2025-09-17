@@ -29,3 +29,7 @@ destination = "/models"
 [env]
 PROJECT_NAME = "bwki2025-lowres-langid-backend"
 BACKEND_CORS_ORIGINS = "http://localhost:8000,https://localhost:8000,https://toberocat.github.io"
+MODELS_DIR = "/models"
+HF_REPO = "Tobero/bwki2025-lowres-langid-model"
+HF_REV = "main"
+HF_HUB_ENABLE_HF_TRANSFER = 1
