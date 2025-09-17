@@ -3,16 +3,17 @@ from fastapi import APIRouter
 from app.api.v1.schemas.classification_response import ClassificationResponse, LanguagePredictionResponse
 from app.api.v1.schemas.classify_request import ClassifyRequest
 from app.core.container import LanguageIdentificationServiceDep
-from langcodes import Language
+from langcodes import Language, standardize_tag
 
 router = APIRouter(tags=["classify"])
 
 def alpha3_to_name(code: str, locale: str = "en") -> str:
-    lang = Language.make(language=code.strip().lower())
-    display = lang.display_name(locale)
-    if "unknown" in display.lower():
-        return code
-    return display
+    tag = standardize_tag(code)
+    name = Language.get(tag).display_name(locale or "en")
+
+    if name and "unknown" not in name.lower():
+        return name
+    return code
 
 @router.post("/classify")
 def classify_text(
