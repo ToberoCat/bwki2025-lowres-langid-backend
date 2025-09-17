@@ -5,11 +5,12 @@ import fasttext
 
 from app.core.errors import NoExpertFoundError
 from app.domain.entities.classification_result import LanguagePrediction
+from app.startup_models import MODELS_DIR
 
 
 @dataclass(frozen=True, slots=True)
 class FastTextExpertRepositoryConfig:
-    model_path: str = "models"
+    model_path: str = MODELS_DIR # ToDo: Cleaner via config?
     expert_model_patterns: tuple[str, ...] = (
         "{}/{}/langclf_quant.ftz",
         "{}/{}/langclf.bin",
