@@ -10,7 +10,7 @@ services:
     environment:
       - PYTHONUNBUFFERED=1
     volumes:
-      - ./models:/app/models
+      - ./schemas:/app/schemas
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]

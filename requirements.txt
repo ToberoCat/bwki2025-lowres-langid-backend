@@ -1,3 +1,10 @@
+langcodes
+fasttext
+fasttext-wheel
+pyicu
+typing-extensions
+pydantic-settings
+starlette
 fastapi>=0.104.0
 uvicorn[standard]>=0.24.0
 fasttext>=0.9.2
