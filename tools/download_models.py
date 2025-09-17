@@ -1,6 +1,8 @@
-# app/startup_models.py (fixed)
+import json
+import os
+import time
 from pathlib import Path
-import json, os, time
+
 from filelock import FileLock, Timeout
 from huggingface_hub import snapshot_download
 
@@ -52,3 +54,6 @@ def ensure_models(timeout_s: int = 60 * 30) -> None:
             print(f"[models] Ready in {time.time() - t0:.1f}s -> {MODELS_DIR}")
     except Timeout:
         raise RuntimeError("Model download lock timed out")
+
+if __name__ == "__main__":
+    ensure_models()
