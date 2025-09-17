@@ -1,12 +1,8 @@
-from contextlib import asynccontextmanager
-
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
 from app.api.v1.rest_controller import api_router
 from app.core.config import settings
-
-
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -17,7 +13,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:8000",
-        "https://localhost:8000",
+        "http://localhost:4200",
         "https://toberocat.github.io"
     ],
     allow_methods=["*"],
