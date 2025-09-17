@@ -26,7 +26,7 @@ def classify_text(
                 language_id=pred.language,
                 language_name=alpha3_to_name(pred.language, req.locale),
                 probability=pred.probability
-            ) for pred in result
+            ) for pred in result.predictions
         ],
-        writing_system=result[0].writing_system if result else "Unknown"
+        writing_system=result.writing_system if result else "Unknown"
     )
