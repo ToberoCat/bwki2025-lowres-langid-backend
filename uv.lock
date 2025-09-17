@@ -28,7 +28,7 @@ wheels = [
 [[package]]
 name = "bwki2025-lowres-langid-backend"
 version = "0.1.0"
-source = { editable = "." }
+source = { virtual = "." }
 dependencies = [
     { name = "fastapi" },
     { name = "fasttext-numpy2" },
