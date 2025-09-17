@@ -25,3 +25,7 @@ memory_mb = 1024
 [mounts]
 source = "models_vol"
 destination = "/models"
+
+[env]
+PROJECT_NAME = "bwki2025-lowres-langid-backend"
+BACKEND_CORS_ORIGINS = "http://localhost:8000,https://localhost:8000,https://toberocat.github.io"
