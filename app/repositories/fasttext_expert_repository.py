@@ -22,11 +22,19 @@ class FastTextExpertRepository:
         if not os.path.exists(self.cfg.model_path):
             raise RuntimeError(f"Model path does not exist: {self.cfg.model_path}")
 
+    def _preprocess_text(self, text: str) -> str:
+        return (text
+                .replace("\n", " ")
+                .replace("\r", " ")
+                .strip()
+                .lower())
+
     def classify(self, text: str, writing_system: str) -> list[LanguagePrediction]:
         expert_model_file = self.cfg.expert_model_path.format(self.cfg.model_path, writing_system)
-        if os.path.exists(expert_model_file):
-            raise NoExpertFoundError("FastText model loading and prediction not implemented.")
+        if not os.path.exists(expert_model_file):
+            raise NoExpertFoundError(f"No expert model found for writing system: {writing_system}")
 
+        text = self._preprocess_text(text)
         model = fasttext.load_model(expert_model_file)
         labels, probabilities = model.predict(text, k=self.cfg.max_predictions)
         predictions = [

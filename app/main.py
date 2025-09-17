@@ -9,7 +9,6 @@ app = FastAPI(
     openapi_url=f"{settings.API_V1_STR}/openapi.json",
 )
 
-# Set all CORS enabled origins
 if settings.all_cors_origins:
     app.add_middleware(
         CORSMiddleware,
@@ -18,5 +17,10 @@ if settings.all_cors_origins:
         allow_methods=["*"],
         allow_headers=["*"],
     )
+
+
+@app.get("/health", tags=["health"])
+async def health():
+    return {"status": "ok"}
 
 app.include_router(api_router, prefix=settings.API_V1_STR)
