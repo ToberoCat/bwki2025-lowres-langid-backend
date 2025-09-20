@@ -9,8 +9,6 @@ services:
       - PYTHONUNBUFFERED=1
       - PROJECT_NAME="bwki2025-lowres-langid-backend"
       - MODELS_DIR=./models
-    volumes:
-      - ./models:/app/models:ro
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]

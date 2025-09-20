@@ -20,15 +20,10 @@ processes = ['app']
 memory = '1gb'
 cpu_kind = 'shared'
 cpus = 1
-memory_mb = 2048
-
-[mounts]
-source = "models_vol"
-destination = "/models"
 
 [env]
 PROJECT_NAME = "bwki2025-lowres-langid-backend"
-MODELS_DIR = "/models"
+MODELS_DIR = "./models"
 HF_REPO = "Tobero/bwki2025-lowres-langid-model"
 HF_REV = "main"
 HF_HUB_ENABLE_HF_TRANSFER = 1
