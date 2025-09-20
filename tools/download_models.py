@@ -6,7 +6,7 @@ from pathlib import Path
 from filelock import FileLock, Timeout
 from huggingface_hub import snapshot_download
 
-MODELS_DIR = "./models"
+MODELS_DIR = Path("./models")
 HF_REPO = "Tobero/bwki2025-lowres-langid-model"
 HF_REV = "main"
 
