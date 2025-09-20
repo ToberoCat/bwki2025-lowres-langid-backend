@@ -24,7 +24,4 @@ cpus = 1
 [env]
 PROJECT_NAME = "bwki2025-lowres-langid-backend"
 MODELS_DIR = "./models"
-HF_REPO = "Tobero/bwki2025-lowres-langid-model"
-HF_REV = "main"
-HF_HUB_ENABLE_HF_TRANSFER = 1
 UVICORN_WORKERS = 1
