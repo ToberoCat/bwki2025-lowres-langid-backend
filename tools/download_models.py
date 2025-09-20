@@ -6,9 +6,9 @@ from pathlib import Path
 from filelock import FileLock, Timeout
 from huggingface_hub import snapshot_download
 
-MODELS_DIR = Path(os.getenv("MODELS_DIR", "./models"))
-HF_REPO = os.environ["HF_REPO"]
-HF_REV = os.getenv("HF_REV", "main")
+MODELS_DIR = "./models"
+HF_REPO = "Tobero/bwki2025-lowres-langid-model"
+HF_REV = "main"
 
 MARKER = MODELS_DIR / ".hf_snapshot.json"
 LOCKFILE = MODELS_DIR / ".download.lock"
