@@ -13,6 +13,7 @@ class FastTextExpertRepositoryConfig:
     expert_model_patterns: tuple[str, ...] = (
         "{}/{}/langclf_quant.ftz",
         "{}/{}/langclf.bin",
+        "{}/{}/langclf_quant/model.ftz"
     )  # (model_path, writing_system)
     labels_prefix: str = "__label__"
     max_predictions: int = 10
