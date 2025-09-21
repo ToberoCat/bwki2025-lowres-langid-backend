@@ -63,9 +63,6 @@ Die einfachste Methode ist Docker Compose:
 ```bash
 # Im Projektverzeichnis
 
-# Modelle herunterladen
-uv run python tools/download_models.py
-
 # Mit Docker Compose starten
 docker-compose up --build
 
@@ -84,6 +81,9 @@ docker-compose up --build
 
 # UV installieren (falls nicht vorhanden)
 curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Packages Installieren (Linux, Ubuntu) für pyicu
+sudo apt-get install pkg-config libicu-dev build-essential python3-dev
 
 # Abhängigkeiten installieren
 uv sync
